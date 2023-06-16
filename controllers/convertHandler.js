@@ -15,7 +15,6 @@ function ConvertHandler() {
         result = fraction[0] / fraction[1];
       }
     } else if (isNaN(num)) {
-      console.log("hi NAN", num);
       result = "invalid number";
     } else {
       result = +num;
@@ -34,8 +33,6 @@ function ConvertHandler() {
         : input.split(/[^a-z]+/i)[1];
 
     let unitFormat = unit?.toLowerCase();
-
-    console.log("hi", unit);
 
     if (unitFormat === undefined) {
       result = "invalid unit";
