@@ -4,11 +4,9 @@ function ConvertHandler() {
     let result;
 
     let num = input.split(/[a-z]+/i)[0];
-    // console.log("hi", num);
 
     if (num === "" || !num) {
       result = 1;
-      // console.log("hi", result);
     } else if (num.includes("/")) {
       let fraction = num.split("/");
       if (fraction.length > 2) {
@@ -22,7 +20,6 @@ function ConvertHandler() {
     } else {
       result = +num;
     }
-    console.log("hi", result);
 
     return result;
   };
@@ -31,11 +28,14 @@ function ConvertHandler() {
   this.getUnit = function (input) {
     let result;
 
-    const unit = input.split(/[^a-z]+/i)[1];
+    const unit =
+      input.split(/[^a-z]+/i).length < 2
+        ? input.split(/[^a-z]+/i)[0]
+        : input.split(/[^a-z]+/i)[1];
 
     let unitFormat = unit?.toLowerCase();
 
-    // console.log("hi", unitFormat);
+    console.log("hi", unit);
 
     if (unitFormat === undefined) {
       result = "invalid unit";
@@ -58,7 +58,6 @@ function ConvertHandler() {
 
   //function that returns the converted unit from the result of this.getUnit(). if invalid unit, return error. if valid unit, return converted unit. gal is connected to l, lbs is connected to kg, mi is connected to km.
   this.getReturnUnit = function (initUnit) {
-    // const extractedUnit = this.getUnit(initUnit);
     if (initUnit === "gal") {
       return "L";
     }
@@ -82,8 +81,6 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function (unit) {
-    // const extractedUnit = this.getUnit(initUnit);
-    // console.log(unit);
     const units = {
       gal: "gallons",
       L: "liters",
@@ -99,7 +96,7 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    // let result;
+
     switch (initUnit) {
       case "gal":
         return +(initNum * galToL).toFixed(5);
@@ -116,8 +113,6 @@ function ConvertHandler() {
       default:
         return initNum;
     }
-
-    // return result;
   };
 
   this.getString = function (initNum, initUnit, returnNum, returnUnit) {
